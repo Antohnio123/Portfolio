@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Привет, {{current_user.username|upper}}!</h1>
+    <p style="color: grey;"> Это приложение, написанное на Python Flask.<br>
+        Пока без Front-end (красивого внешнего вида). Его функционал ещё будет расти. <br>
+        Сейчас есть система регистрации и твиттер, сохраняющий сообщения пользователей и выводящий ниже последние 30 из них.</p>
+<!---->
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.message_text.label }}<br>
+            {{ form.message_text(size=220) }}
+            {% for error in form.message_text.errors %}
+                <span style="color: red;">[{{ error }}] </span>
+            {% endfor %}
+        </p>
+        <p> {{ form.submit() }} </p>
+    </form>
+
+    {% for post in posts %}
+        <div><p>{{ post.author.username}} написал(а): "<b>{{ post.body }}</b> ({{ (post.timestamp).strftime('%Y-%m-%d %H:%M:%S') }})"</p></div>
+    {% endfor %}
+{% endblock %}
