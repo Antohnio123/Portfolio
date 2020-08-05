@@ -1,0 +1,5 @@
+python_version > '3.7'
+pip==20.0.2
+setuptools==41.2.0
+XlsxWriter==1.2.8
+pypiwin32
